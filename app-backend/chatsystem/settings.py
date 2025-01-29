@@ -32,6 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
+    "channels",
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'rest_framework_nested',
+    "corsheaders",
     'djoser',
     
     'chat',
@@ -48,6 +52,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,6 +81,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'chatsystem.wsgi.application'
+ASGI_APPLICATION = 'chatsystem.asgi.application'
 
 
 # Database
@@ -153,6 +159,11 @@ DJOSER = {
         'current_user': 'core.serializers.UserSerializer'
     }
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    # "http://127.0.0.1:9000",
+]
 
 
 # "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczODE0MTAzMCwiaWF0IjoxNzM4MDU0NjMwLCJqdGkiOiI3OTIyNzJiMTA0YjM0MDk5YWNhZmU4MGQyOGExMzRhYyIsInVzZXJfaWQiOjJ9.h6Bm_j2Bw1iLpYXcmPG9QTlA0ZKDFiwwAPcpg_gUFx0",
