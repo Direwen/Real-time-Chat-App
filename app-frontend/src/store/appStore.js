@@ -6,7 +6,8 @@ export const useAppStore = defineStore('app', {
     loading: false,
     user: null,
     isActive: false,
-    chats: []
+    chats: null,
+    activeChat: null
   }),
   actions: {
     async login(username, password) {
@@ -33,11 +34,11 @@ export const useAppStore = defineStore('app', {
     },
 
     async getUser() {
-      if (localStorage.getItem("token")) {
-        await this.handleAsync(async () => {  // Use 'this.handleAsync' after moving it inside actions
+      if (localStorage.getItem("token") && !this.user) {
+        await this.handleAsync(async () => {
           const res = await AxiosInstance.get("auth/users/me");
-  
           this.user = res.data
+          this.isActive = true
     
         });
       } else {

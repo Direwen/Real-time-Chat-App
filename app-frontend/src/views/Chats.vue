@@ -1,8 +1,9 @@
 <template>
     <div class="p-4">
-        <section v-if="!appstore.user" class="text-center text-gray-500">Please Log In</section>
+        <section v-if="!appstore.isActive" class="text-center text-gray-500">Please Log In</section>
         <section v-else>
             <ul class="space-y-2">
+                <li v-if="appstore.chats.length == 0">No Chat Found</li>
                 <li 
                     v-for="chat in appstore.chats" 
                     :key="chat.id" 
@@ -25,6 +26,8 @@ import { useAppStore } from "../store/appStore";
 const appstore = useAppStore();
 
 onMounted(async () => {
-    await appstore.listChats();
+    if (!appstore.chats) {
+        await appstore.listChats();
+    }
 });
 </script>

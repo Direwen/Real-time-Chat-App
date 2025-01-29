@@ -37,7 +37,7 @@ import { useRouter } from "vue-router";
     try {
       await appStore.login(username.value, password.value);
       await appStore.getUser()
-      router.push("/users")
+      router.push("/chats")
     } catch (error) {
       console.log(error)
     }

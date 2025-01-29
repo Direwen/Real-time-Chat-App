@@ -29,7 +29,7 @@ let chatSocket = null;
 
 // Connect to WebSocket
 const connectWebSocket = () => {
-    chatSocket = new WebSocket(`ws://127.0.0.1:8000/ws/chat/your_room_name/?token=${localStorage.getItem('token')}`); // Replace 'your_room_name' with your room name
+    chatSocket = new WebSocket(`ws://127.0.0.1:8000/ws/chat/${chatId}/?token=${localStorage.getItem('token')}`); // Replace 'your_room_name' with your room name
 
     chatSocket.onopen = () => {
         console.log('WebSocket connection established.');
